@@ -24,7 +24,7 @@ I'd like to emphasize that by using the methods I am describing, you need to be 
 ### TCP/IP Commands:
 You can read about the UR Dashboard Server Commands [here](https://www.universal-robots.com/articles/ur/dashboard-server-cb-series-port-29999/ "Dashboard Server Commands").  I would recommend familiarizing yourself with the commands by trying them out using PuTTY or similar program.  Create a raw connection from your computer to the robot's IP address on port 29999.  Then you can enter the commands one at a time in the terminal.  The sequence pictured will recover from a (not Protective Stop) e-stop condition.  After sending each command, you recieve a handshake back from the robot.  The order of commands and allowing for the previous action to complete are important and I will talk about this more later.
 
-<img src = "./Images/PuTTYsetup.PNG" alt="PuTTYsetup" width="350"/> <img src = "./Images/PuTTYterminal.PNG" alt="PuTTYterminal" width="600"/>
+<img src = "./Images/PuTTYsetup.PNG" alt="PuTTYsetup" width="350"/> <img src = "./Images/PuTTYterminal.PNG" alt="PuTTYterminal" width="550"/>
 
 There is an additional command `unlock protective stop` which is needed if the robot encounters a protective stop.  Use caution with this command and make sure that you have resolved the cause of the protective stop first.  This command only works after 5 seconds have passed since the protective stop event.
 
@@ -40,7 +40,7 @@ As I mentioned earlier, the order of the commands is important.  It is also impo
 ### HMI Program:
 Insert an ME Program Launcher ActiveX control into your project by going to the Objects menu, clicking ActiveX Control, and then selecting ME Program Launcher.  You will get the ME Program Launcher Properties window.  In the Connections tab, you will need to specify several parameters.  ProgramLocation is the path to one of your new .exe programs.  Set NewInstance to zero, which will prevent you from launching multiple instances of the .exe program.  LaunchEnable is the BOOL variable tag that you created in the PLC to trigger this control, and CloseProgram is the logical NOT of that variable.  
 
-<img src = "./Images/MEProgramLauncherConnections.PNG" alt="ProgramLauncherConnections" width="300"/>
+<img src = "./Images/MEProgramLauncherConnections.PNG" alt="ProgramLauncherConnections" width="400"/>
 
 This will create a button on your HMI screen and you can launch the .exe program by either pressing that button or making the LaunchEnable variable True.  You can remove the button functionality by going to the Common tab of the ME Program Launcher Properties and unchecking the Visible check box.  Then you can resize the button to a very small size and put it in an unused corner of the screen.  You will then need to follow this process to create ActiveX controls for each one of the .exe programs.  The ActiveX controls you put on your HMI screen will only work if that screen is the currently displayed screen, so you will have to copy and paste them onto every screen.
 
