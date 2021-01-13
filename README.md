@@ -19,7 +19,7 @@ The sequence of steps required for an operator to resset the robot using its pen
 ### Safety:
 I'd like to emphasize that by using the methods I am describing, you need to be __sure__ that it is in fact safe for the robot to return to operation.  It is your responsibility as the integrator.  Resetting safety circuits requires a manual reset for a reason.  In the example pictured below, the machine can ensure that the robot's area is clear through use of guarding, safety light curtains, and safety area scanners.  
 
-<img src = "./Images/PartialMachine.png" alt="drawing" width="350"/>
+<img src = "Images/PartialMachine.png" alt="drawing" width="350"/>
 
 ### TCP/IP Commands:
 You can read about the UR Dashboard Server Commands [here](https://www.universal-robots.com/articles/ur/dashboard-server-cb-series-port-29999/ "Dashboard Server Commands").  I would recommend familiarizing yourself with the commands by trying them out using PuTTY or similar program.  Create a raw connection from your computer to the robot's IP address on port 29999.  Then you can enter the commands one at a time in the terminal.  The sequence pictured will recover from a (not Protective Stop) e-stop condition.  After sending each command, you recieve a handshake back from the robot.  The order of commands and allowing for the previous action to complete are important and I will talk about this more later.
